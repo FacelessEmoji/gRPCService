@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "rut.miit.grpcservice";
+option java_outer_classname = "LoggingServiceProto";
+
+service LoggingService {
+  rpc logAction (LogRequest) returns (LogResponse);
+}
+
+message LogRequest {
+  string action = 1;
+  string entity_type = 2;
+  string entity_id = 3;
+  string user_id = 4;
+  string timestamp = 5;
+}
+
+message LogResponse {
+  bool success = 1;
+  string message = 2;
+}
