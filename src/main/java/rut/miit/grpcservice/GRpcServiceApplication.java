@@ -17,24 +17,20 @@ public class GRpcServiceApplication {
         SpringApplication.run(GRpcServiceApplication.class, args);
     }
 
-    // Запуск gRPC сервера при старте Spring Boot приложения
     @Bean
     public CommandLineRunner startGrpcServer() {
         return args -> {
             server = ServerBuilder.forPort(9090)
-                    .addService(new LoggingServiceImpl())  // Подключаем сервис
+                    .addService(new LoggingServiceImpl())
                     .build();
 
-            // Запускаем gRPC сервер
             server.start();
             System.out.println("gRPC server started on port 9090");
 
-            // Делаем так, чтобы приложение не завершалось
             server.awaitTermination();
         };
     }
 
-    // Остановка gRPC сервера при завершении приложения
     @PreDestroy
     public void stopGrpcServer() {
         if (server != null) {

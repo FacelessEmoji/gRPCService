@@ -12,6 +12,10 @@
         <appender-ref ref="FILE" />
     </logger>
 
+    <!-- Уровень логирования для FontBox и PDFBox -->
+    <logger name="org.apache.fontbox" level="ERROR"/>
+    <logger name="org.apache.pdfbox" level="ERROR"/>
+
     <!-- Отключение лишних логов от Spring -->
     <logger name="org.springframework" level="WARN" />
     <logger name="org.hibernate" level="WARN" />

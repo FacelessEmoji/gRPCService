@@ -3,19 +3,22 @@ syntax = "proto3";
 option java_package = "rut.miit.grpcservice";
 option java_outer_classname = "LoggingServiceProto";
 
+// Сервис для логирования операций
 service LoggingService {
   rpc logAction (LogRequest) returns (LogResponse);
 }
 
+// Запрос для логирования действия
 message LogRequest {
-  string action = 1;
-  string entity_type = 2;
-  string entity_id = 3;
-  string user_id = 4;
-  string timestamp = 5;
+  string action = 1;         // Тип действия (CREATE, UPDATE, DELETE)
+  string entity_type = 2;    // Тип сущности (Order, Client, Master, Part, etc.)
+  string entity_id = 3;      // Идентификатор сущности (например, ID заказа)
+  string description = 4;    // Описание действия (например, "Status changed to ACCEPTED")
+  string timestamp = 5;      // Время события
 }
 
+// Ответ на запрос логирования
 message LogResponse {
-  bool success = 1;
-  string message = 2;
+  bool success = 1;          // Успех операции
+  string message = 2;        // Сообщение об ошибке или подтверждение успеха
 }
